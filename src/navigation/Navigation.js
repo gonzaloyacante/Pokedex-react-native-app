@@ -39,7 +39,7 @@ const Navigation = () => {
         name="Account"
         component={AccountNavigation}
         options={{
-          headerTitle: "Account",
+          headerTitle: "Mi Cuenta",
           headerTitleAlign: "center",
           tabBarLabel: "Mi Cuenta",
           tabBarIcon: ({ color, size }) => (

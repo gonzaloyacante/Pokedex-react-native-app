@@ -15,6 +15,9 @@ const Header = (props) => {
       <View style={bgStyles} />
       <SafeAreaView style={styles.container}>
         <Text style={styles.title}>{name}</Text>
+        <Text style={styles.order}>
+              #{`${order}`.padStart(3, 0)}
+            </Text>
         <View style={styles.contentImg}>
             <Image
                 source={pokeballWhite}
@@ -48,6 +51,11 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: 700,
     textTransform: "capitalize",
+    color: '#fff',
+  },
+  order: {
+    fontSize: 18,
+    fontWeight: 700,
     color: '#fff',
   },
   contentImg: {

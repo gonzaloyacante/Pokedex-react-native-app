@@ -1,19 +1,38 @@
-import { StyleSheet, Text, View, TextInput, Keyboard, Button } from "react-native";
-import React from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Keyboard,
+  Button,
+} from "react-native";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { user, userDetails } from "../../utils/userDB";
+import useAuth from "../../Hooks/useAuth";
 
 const LoginForm = () => {
+  const [error, setError] = useState("");
+  const { login } = useAuth();
+
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: Yup.object(validationSchema()),
     validateOnChange: false,
     onSubmit: (formValue) => {
-      console.log('Formulario Enviado');
-      console.log(formValue);
-    }
-  })
+      setError("");
+      const { username, password } = formValue;
 
+      if (username !== user.username || password !== user.password) {
+        setError("El usuario o la contraseña no son correctos");
+      } else {
+        login(userDetails);
+        console.log("Login correcto");
+        console.log(userDetails);
+      }
+    },
+  });
 
   return (
     <View>
@@ -24,7 +43,7 @@ const LoginForm = () => {
           style={styles.input}
           autoCapitalize="none"
           value={formik.values.username}
-          onChangeText={(text) => formik.setFieldValue('username', text)}
+          onChangeText={(text) => formik.setFieldValue("username", text)}
         />
         <TextInput
           placeholder="Contraseña"
@@ -32,14 +51,29 @@ const LoginForm = () => {
           autoCapitalize="none"
           secureTextEntry={true}
           value={formik.values.password}
-          onChangeText={(text) => formik.setFieldValue('password', text)}
+          onChangeText={(text) => formik.setFieldValue("password", text)}
         />
-        <Button
-          title="Entrar"
-          onPress={formik.handleSubmit}
-        />
-        <Text style={styles.errors}>{formik.errors.username}</Text>
-        <Text style={styles.errors}>{formik.errors.password}</Text>
+
+        <Button title="Entrar" onPress={formik.handleSubmit} />
+
+        {/* <Text style={styles.error}>{formik.errors.username}{"\n"}{formik.errors.password}{"\n"}{error}</Text> */}
+
+        {formik.errors.username ? (
+          <Text style={styles.error}> {formik.errors.username} </Text>
+        ) : (
+          ""
+        )}
+        {formik.errors.password ? (
+          <Text style={styles.error}> {formik.errors.password} </Text>
+        ) : (
+          ""
+        )}
+        {error ? <Text style={styles.error}> {error} </Text> : ""}
+
+        {/* <Text style={styles.error}>{formik.errors.username}</Text>
+        <Text style={styles.error}>{formik.errors.password}</Text>
+
+        <Text style={styles.error}>{error}</Text> */}
       </View>
     </View>
   );
@@ -82,9 +116,9 @@ const styles = StyleSheet.create({
     padding: 10,
     borderBottomWidth: 1,
   },
-  errors: {
+  error: {
     textAlign: "center",
     color: "#f00",
     marginTop: 10,
-  }
+  },
 });

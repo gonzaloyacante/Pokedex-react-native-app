@@ -64,6 +64,6 @@ const styles = StyleSheet.create({
   containerInfo: {
     width: '100%',
     paddingHorizontal: 30,
-    marginTop: Platform.OS === 'ios' ? 60 : 100,
+    marginTop: Platform.OS === 'ios' ? 40 : 100,
   }
 });
