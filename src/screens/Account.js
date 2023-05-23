@@ -1,15 +1,18 @@
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { StyleSheet, Text } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import LoginForm from "../components/Auth/LoginForm";
+import UserData from "../components/Auth/userData";
 
 const Account = () => {
+  const auth = null;
+
   return (
-    <SafeAreaView>
-      <Text>Account</Text>
-    </SafeAreaView>
-  )
-}
+    <View>
+      {auth ? <UserData /> : <LoginForm />}
+    </View>
+  );
+};
 
-export default Account
+export default Account;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
