@@ -44,6 +44,7 @@ const Navigation = () => {
           headerTitle: "Mi Cuenta",
           headerTitleAlign: "center",
           tabBarLabel: "Mi Cuenta",
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Icon name="user" color={color} size={size} />
           ),

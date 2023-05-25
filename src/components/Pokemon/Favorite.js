@@ -31,7 +31,7 @@ const Favorite = (props) => {
       await addPokemonFavoriteApi(id);
       onReloadCheckFavorite();
     } catch (error) {
-      console.error(error);
+      throw error;
     }
   };
 
@@ -40,7 +40,7 @@ const Favorite = (props) => {
       await removePokemonFavoriteApi(id);
       onReloadCheckFavorite();
     } catch (error) {
-      console.error(error);
+      throw error;
     }
   };
 

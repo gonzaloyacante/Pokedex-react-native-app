@@ -40,7 +40,7 @@ const Pokedex = () => {
 
       setPokemons([...pokemons, ...pokemonsArray]);
     } catch (error) {
-      console.error(error);
+      throw error;
     } finally {
       setLoading(false);
     }

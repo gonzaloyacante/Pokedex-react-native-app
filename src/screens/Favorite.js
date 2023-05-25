@@ -12,8 +12,6 @@ const Favorite = () => {
   const [pokemons, setPokemons] = useState([]);
   const { auth } = useAuth();
 
-  console.log(pokemons);
-
   useFocusEffect(
     useCallback(() => {
       if (auth) {
@@ -44,7 +42,15 @@ const Favorite = () => {
   return !auth ? (
     <NoLogged />
   ) : (
-    <SafeAreaView><Text style={styles.title}>Favoritos</Text><PokemonList pokemons={pokemons} /></SafeAreaView>
+    <SafeAreaView>
+      <Text style={styles.title}>Favoritos</Text>
+      {pokemons.length === 0
+        ? <Text style={styles.text}>
+            En este momento no tienes pokemons en favoritos.{"\n\n"}
+            Por favor, guarda algún pokemon para poder usar esta sección.
+          </Text>
+        : <PokemonList pokemons={pokemons} />}
+    </SafeAreaView>
   );
 };
 
@@ -55,5 +61,10 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 500,
     textAlign: 'center',
-  }
+  },
+  text: {
+    textAlign: "center",
+    marginTop: 150,
+    paddingHorizontal: 50
+  },
 });
