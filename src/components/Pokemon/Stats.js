@@ -35,7 +35,7 @@ const Stats = (props) => {
 
   return (
     <View style={styles.content}>
-      <Text style={styles.title}>Base Stats</Text>
+      <Text style={styles.title}>Estadísticas</Text>
       {stats.map(item => (
           <View key={item.stat.name} style={styles.block}>
               <View style={styles.blockTitle}>

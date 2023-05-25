@@ -9,7 +9,7 @@ const Type = (props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.typeTitle}>Types</Text>
+      <Text style={styles.typeTitle}>Tipos</Text>
       <View style={styles.typeInfo}>
         {types.map((item) => (
           <View

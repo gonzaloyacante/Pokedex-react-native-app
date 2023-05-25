@@ -10,6 +10,7 @@ import PokedexNavigation from "./PokedexNavigation";
 const Tab = createBottomTabNavigator();
 
 const Navigation = () => {
+
   return (
     <Tab.Navigator initialRouteName="Pokedex">
       <Tab.Screen
@@ -19,6 +20,7 @@ const Navigation = () => {
           headerTitle: "Favoritos",
           headerTitleAlign: "center",
           tabBarLabel: "Favoritos",
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Icon name="heart" color={color} size={size} />
           ),

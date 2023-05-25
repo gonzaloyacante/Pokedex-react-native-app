@@ -19,7 +19,7 @@ const Pokemon = (props) => {
 
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () => (auth ? <Favorite id={pokemon?.id} /> : undefined),
+      headerRight: () => auth && <Favorite id={pokemon?.id} />,
       headerLeft: () => (
         <Icon
           name="arrow-left"

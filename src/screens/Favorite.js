@@ -1,31 +1,59 @@
+import { StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { StyleSheet, Text, Button } from "react-native";
-// import React, { useState, useEffect } from "react";
+import React, { useState, useCallback } from "react";
+import { useFocusEffect } from "@react-navigation/native";
 import { getPokemonsFavoriteApi } from "../api/favorite";
+import { getPokemonDetailsByIdApi } from "../api/pokemon";
+import useAuth from "../Hooks/useAuth";
+import PokemonList from "../components/PokemonList"
+import NoLogged from "../components/NoLogged"
 
 const Favorite = () => {
-  // const [favorites, setFavorites] = useState(null);
+  const [pokemons, setPokemons] = useState([]);
+  const { auth } = useAuth();
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const response = await getPokemonsFavoriteApi();
-  //     console.log(response);
-  //   })();
-  // }, []);
+  console.log(pokemons);
 
-  const checkFavorites = async () => {
-    const response = await getPokemonsFavoriteApi();
-    console.log(response);
-  };
+  useFocusEffect(
+    useCallback(() => {
+      if (auth) {
+        (async () => {
+          const response = await getPokemonsFavoriteApi()
 
-  return (
-    <SafeAreaView>
-      <Text>Favorite</Text>
-      <Button title="Obtener favoritos" onPress={checkFavorites} />
-    </SafeAreaView>
+          const pokemonsArray = [];
+
+          for await (const id of response) {
+          const pokemonsDetails = await getPokemonDetailsByIdApi(id);
+
+          pokemonsArray.push({
+            id: pokemonsDetails.id,
+            name: pokemonsDetails.name,
+            type: pokemonsDetails.types[0].type.name,
+            order: pokemonsDetails.order,
+            image:
+              pokemonsDetails.sprites.other["official-artwork"].front_default,
+          });
+        }
+
+        setPokemons(pokemonsArray)
+        })()
+      }
+    }, [auth])
+  )
+
+  return !auth ? (
+    <NoLogged />
+  ) : (
+    <SafeAreaView><Text style={styles.title}>Favoritos</Text><PokemonList pokemons={pokemons} /></SafeAreaView>
   );
 };
 
 export default Favorite;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 30,
+    fontWeight: 500,
+    textAlign: 'center',
+  }
+});
