@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React, { useState, useCallback } from 'react'
 import { useFocusEffect } from '@react-navigation/native'
 import useAuth from "../../Hooks/useAuth";
@@ -23,11 +23,14 @@ const userData = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.titleBlock}>
-        <Text style={styles.title}>
+      <Text style={styles.title}>
+        Mi Cuenta
+      </Text>
+      <View style={styles.welcomeBlock}>
+        <Text style={styles.welcome}>
           Bienvenido,
         </Text>
-        <Text style={styles.title}>{`${auth.firstName} ${auth.lastName}`}</Text>
+        <Text style={styles.welcome}>{`${auth.firstName} ${auth.lastName}`}</Text>
       </View>
 
       <View style={styles.dataContainer}>
@@ -37,7 +40,10 @@ const userData = () => {
         <ItemMenu title="Favoritos" text={`${totalFavorites} Pokemons`} />
       </View>
 
-      <Button title='Cerrar sesión' onPress={logout} />
+      {/* <Button title='Cerrar sesión' onPress={logout} /> */}
+      <TouchableOpacity style={styles.button} onPress={logout}>
+        <Text style={styles.buttonText}>Cerrar sesión</Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -56,14 +62,19 @@ function ItemMenu(props) {
 }
 
 const styles = StyleSheet.create({
+  title: {
+    fontSize: 30,
+    fontWeight: 500,
+    textAlign: 'center',
+  },
   container: {
     marginHorizontal: 20,
     marginTop: 20,
   },
-  titleBlock: {
-    marginBottom: 30,
+  welcomeBlock: {
+    marginVertical: 30,
   },
-  title: {
+  welcome: {
     fontSize: 22,
     fontWeight: 'bold',
   },
@@ -86,5 +97,17 @@ const styles = StyleSheet.create({
   itemMenuText: {
     fontWeight: 400,
     fontSize: 16,
+  },
+  button: {
+    backgroundColor: '#2196F3',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 6,
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 })

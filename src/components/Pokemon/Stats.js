@@ -1,16 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useState, useEffect } from 'react'
+import { StyleSheet, Text, View } from "react-native";
+import React, { useState, useEffect } from "react";
 
 const Stats = (props) => {
   const { stats } = props;
 
-  const [maxStat, setMaxStat] = useState(100)
+  const [maxStat, setMaxStat] = useState(100);
 
-    useEffect(() => {
-        const max = Math.max(...stats.map(s => s.base_stat))
-        if (max > 100)
-            setMaxStat(max)
-    }, [stats])
+  useEffect(() => {
+    const max = Math.max(...stats.map((s) => s.base_stat));
+    if (max > 100) setMaxStat(max);
+  }, [stats]);
 
   const barStyles = (num) => {
     let bgColorized;
@@ -25,7 +24,7 @@ const Stats = (props) => {
       bgColorized = "#6EEB83";
     }
 
-    const width = (num * 100 / maxStat).toFixed(2);
+    const width = ((num * 100) / maxStat).toFixed(2);
 
     return {
       backgroundColor: bgColorized,
@@ -36,68 +35,73 @@ const Stats = (props) => {
   return (
     <View style={styles.content}>
       <Text style={styles.title}>Estadísticas</Text>
-      {stats.map(item => (
-          <View key={item.stat.name} style={styles.block}>
-              <View style={styles.blockTitle}>
-                  <Text style={styles.statName}>{item.stat.name}</Text>
-              </View>
-              <View style={styles.blockInfo}>
-                  <Text style={styles.number}>{item.base_stat}</Text>
-                  <View style={styles.bgBar}>
-                      <View style={[styles.bar, barStyles(item.base_stat)]}></View>
-                  </View>
-              </View>
+      {stats.map((item) => (
+        <View key={item.stat.name} style={styles.block}>
+          <View style={styles.blockTitle}>
+            <Text style={styles.statName}>{item.stat.name}</Text>
           </View>
-      ))
-      }
+          <View style={styles.blockInfo}>
+            <Text style={styles.number}>{item.base_stat}</Text>
+            <View style={styles.bgBar}>
+              <View style={[styles.bar, barStyles(item.base_stat)]}></View>
+            </View>
+          </View>
+        </View>
+      ))}
     </View>
-  )
-}
+  );
+};
 
-export default Stats
+export default Stats;
 
 const styles = StyleSheet.create({
   content: {
+    width: "100%",
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
     marginTop: 20,
     marginBottom: 60,
   },
   title: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "bold",
     marginBottom: 10,
   },
   block: {
-    flexDirection: 'row',
+    flexDirection: "row",
     paddingVertical: 5,
   },
   blockTitle: {
-    width: '30%',
+    width: "30%",
   },
   statName: {
     fontSize: 14,
-    color: '#6b6b6b',
-    textTransform: "capitalize"
+    color: "#0b0b0b",
+    fontWeight: 500,
+    textTransform: "capitalize",
   },
   blockInfo: {
-    width: '70%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
+    width: "70%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-end",
   },
   number: {
-    width: '14%',
+    width: "14%",
     fontSize: 14,
-    fontWeight: 500
+    fontWeight: 500,
   },
   bgBar: {
-    backgroundColor: '#dedede',
-    width: '80%',
+    backgroundColor: "#dedede",
+    width: "80%",
     height: 10,
     borderRadius: 20,
-    overflow: 'hidden'
+    overflow: "hidden",
   },
   bar: {
     height: 10,
     borderRadius: 20,
-  }
-})
+  },
+});

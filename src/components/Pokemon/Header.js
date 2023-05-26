@@ -1,8 +1,7 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import { StyleSheet, Text, View, Image, Platform } from 'react-native'
+import { StyleSheet, Text, View, Image, Platform } from "react-native";
 import getColorByPokemonType from "../../utils/getColorByPokemonType";
 import pokeballWhite from "../../assets/pokeball-white.png";
-
 
 const Header = (props) => {
   const { name, order, image, type } = props;
@@ -15,64 +14,59 @@ const Header = (props) => {
       <View style={bgStyles} />
       <SafeAreaView style={styles.container}>
         <Text style={styles.title}>{name}</Text>
-        <Text style={styles.order}>
-              #{`${order}`.padStart(3, 0)}
-            </Text>
+        <Text style={styles.order}>#{`${order}`.padStart(3, 0)}</Text>
         <View style={styles.contentImg}>
-            <Image
-                source={pokeballWhite}
-                style={styles.pokeball}
-            />
+          <Image source={pokeballWhite} style={styles.pokeball} />
           <Image source={{ uri: image }} style={styles.image} />
         </View>
       </SafeAreaView>
     </View>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
 
 const styles = StyleSheet.create({
   bgStyles: {
-    width: '100%',
+    width: "100%",
     height: 400,
-    position: 'absolute',
+    position: "absolute",
     borderBottomRightRadius: 300,
     borderBottomLeftRadius: 300,
     transform: [{ scaleX: 2 }],
   },
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
     marginHorizontal: 20,
-    marginTop: Platform.OS === 'ios' ? 5 : 7,
+    marginTop: Platform.OS === "ios" ? 5 : 7,
   },
   title: {
     fontSize: 28,
     fontWeight: 700,
     textTransform: "capitalize",
-    color: '#fff',
+    color: "#fff",
   },
   order: {
     fontSize: 18,
     fontWeight: 700,
-    color: '#fff',
+    color: "#fff",
   },
   contentImg: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    top: 30
+    justifyContent: "center",
+    alignItems: "center",
+    top: 30,
   },
   pokeball: {
     width: 300,
     height: 300,
-    position: 'absolute',
+    position: "absolute",
     opacity: 0.2,
     zIndex: -100,
   },
   image: {
     width: 250,
     height: 250,
-  }
-})
+  },
+});

@@ -1,15 +1,14 @@
 {
   "expo": {
     "name": "Pokedex",
-    "slug": "Pokedex",
+    "slug": "pokedex",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "cover",
-      "backgroundColor": "transparent"
+      "resizeMode": "cover"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
@@ -19,8 +18,7 @@
     "android": {
       "package": "io.github.gonzaloyacante.pokedex",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "transparent"
+        "foregroundImage": "./assets/adaptive-icon.png"
       }
     },
     "web": {

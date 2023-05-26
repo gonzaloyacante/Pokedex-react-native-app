@@ -5,6 +5,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import Header from "../components/Pokemon/Header";
 import Type from "../components/Pokemon/Type";
 import Stats from "../components/Pokemon/Stats";
+import About from "../components/Pokemon/About";
 import Favorite from "../components/Pokemon/Favorite";
 import useAuth from "../Hooks/useAuth";
 
@@ -54,8 +55,9 @@ const Pokemon = (props) => {
         type={pokemon.types[0].type.name}
       />
       <View style={styles.containerInfo}>
-        <Type types={pokemon.types}/>
-        <Stats stats={pokemon.stats}/>
+        <About height={pokemon.height} weight={pokemon.weight} />
+        <Type types={pokemon.types} />
+        <Stats stats={pokemon.stats} />
       </View>
     </ScrollView>
   );
@@ -65,8 +67,8 @@ export default Pokemon;
 
 const styles = StyleSheet.create({
   containerInfo: {
-    width: '100%',
-    paddingHorizontal: 30,
-    marginTop: Platform.OS === 'ios' ? 40 : 100,
-  }
+    width: "100%",
+    paddingHorizontal: 20,
+    marginTop: Platform.OS === "ios" ? 40 : 70,
+  },
 });

@@ -29,11 +29,12 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     flex: 1,
-    flexDirection: "row",
-    justifyContent: 'space-between'
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
   },
   typeTitle: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "bold",
     marginBottom: 10,
   },
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
   typeInfo: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end",
   },
   typeText: {
     textAlign: "center",
